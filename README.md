@@ -7,7 +7,7 @@
 ## Projeto Engenharia de dados Cloud AWS usando EMR
 
 
-<p align="center"><img src="./imagens/Marketecture.svg" width="500"></p>
+<p align="center"><img src="./imagens/AwsERM.png" width="500"></p>
 
 __*Foi Crianda uma estrutura de Biga Data na AWS*__
 
