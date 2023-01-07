@@ -9,7 +9,6 @@
 
 <p align="center"><img src="./imagens/AwsERM.png" width="500"></p>
 
-__*Foi Crianda uma estrutura de Biga Data na AWS*__
 
 O projeto consiste em criar um data lake no AWS S3 , fazer upload de dados processa-lo e converte-los para um formato mais adequado a analises levando em consideração espaço de armazenamento e performance do pyspark. 
 
