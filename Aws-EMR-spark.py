@@ -46,6 +46,7 @@ print ("\nImprime os dados lidos em parquet da processing zone")
 print (df_parquet.show())
 
 # cria uma view para trabalhar com sql
+print ("\nCriando sq View")
 df_parquet.createOrReplaceTempView("Dados_Sql")
 
 # processa os dados conforme regra de negócio
@@ -56,7 +57,7 @@ df_sql  = spark.sql("SELECT BNF_CODE as Bnf_code \
                        ,AVG(ACT_COST) as Media_cost \
                       FROM Dados_Sql \
                       GROUP BY bnf_code")
-
+print(df_sql.show())
 
 # converte para formato parquet
 print ("\nEscrevendo os dados processados na Curated Zone...")
@@ -64,7 +65,12 @@ print ("\nEscrevendo os dados processados na Curated Zone...")
 # converte os dados processados para parquet e escreve na curated zone
 df_sql.write.format("parquet")\
          .mode("overwrite")\
-         .save("s3a://cureted-jaime/df-result-file.parquet")
+         .save("s3a://cureted-jaime/df-dadosSQL.parquet")
+print ("\nLendo os dados processados na Curated Zone...")
 
+df_dadossql = spark.read.format("parquet")\
+ .load("s3a://cureted-jaime/df-dadosSQL.parquet")
+
+print(df_dadossql.show())
 # para a aplicação
 spark.stop()
