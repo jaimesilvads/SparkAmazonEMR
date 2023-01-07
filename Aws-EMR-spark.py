@@ -15,42 +15,41 @@ spark.sparkContext.setLogLevel("ERROR")
 # Carregando os dados do nosso Data Lake
 df = spark.read.format("csv")\
     .option("header", "True")\
-    .option("inferSchema","True")\
+    .option("inferSchema", "True")\
     .csv("s3a://landing-jaime/*.csv")
 
 
-
 # imprime os dados lidos da LANDING
-print ("\nImprime os dados lidos da lading:")
-print (df.show())
+print("\nImprime os dados lidos da lading:")
+print(df.show())
 
 # imprime o schema do dataframe
-print ("\nImprime o schema do dataframe lido da landing:")
-print (df.printSchema())
+print("\nImprime o schema do dataframe lido da landing:")
+print(df.printSchema())
 
-#Limpando os dados
-df.na.fill(value=0,subset=["quantity"]).show()
+# Limpando os dados
+df.na.fill(value=0, subset=["quantity"]).show()
 
 # converte para formato parquet
-print ("\nEscrevendo os dados lidos da raw para parquet na processing zone...")
+print("\nEscrevendo os dados lidos da raw para parquet na processing zone...")
 df.write.format("parquet")\
         .mode("overwrite")\
         .save("s3a://processing-jaime/df-parquet-file.parquet")
 
 # lendo arquivos parquet
 df_parquet = spark.read.format("parquet")\
- .load("s3a://processing-jaime/df-parquet-file.parquet")
+    .load("s3a://processing-jaime/df-parquet-file.parquet")
 
 # imprime os dados lidos em parquet
-print ("\nImprime os dados lidos em parquet da processing zone")
-print (df_parquet.show())
+print("\nImprime os dados lidos em parquet da processing zone")
+print(df_parquet.show())
 
 # cria uma view para trabalhar com sql
-print ("\nCriando sq View")
+print("\nCriando sq View")
 df_parquet.createOrReplaceTempView("Dados_Sql")
 
 # processa os dados conforme regra de negócio
-df_sql  = spark.sql("SELECT BNF_CODE as Bnf_code \
+df_sql = spark.sql("SELECT BNF_CODE as Bnf_code \
                        ,SUM(ACT_COST) as Soma_cost \
                        ,SUM(QUANTITY) as Soma_Quantity \
                        ,SUM(ITEMS) as Soma_items \
@@ -60,18 +59,17 @@ df_sql  = spark.sql("SELECT BNF_CODE as Bnf_code \
 print(df_sql.show())
 
 # converte para formato parquet
-print ("\nEscrevendo os dados processados na Curated Zone...")
+print("\nEscrevendo os dados processados na Curated Zone...")
 
 # converte os dados processados para parquet e escreve na curated zone
 df_sql.write.format("parquet")\
-         .mode("overwrite")\
-         .save("s3a://cureted-jaime/df-dadosSQL.parquet")
-print ("\nLendo os dados processados na Curated Zone...")
+    .mode("overwrite")\
+    .save("s3a://cureted-jaime/df-dadosSQL.parquet")
+print("\nLendo os dados processados na Curated Zone...")
 
 df_dadossql = spark.read.format("parquet")\
- .load("s3a://cureted-jaime/df-dadosSQL.parquet")
+    .load("s3a://cureted-jaime/df-dadosSQL.parquet")
 
 print(df_dadossql.show())
-
 # para a aplicação
 spark.stop()
