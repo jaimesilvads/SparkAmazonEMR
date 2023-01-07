@@ -72,5 +72,6 @@ df_dadossql = spark.read.format("parquet")\
  .load("s3a://cureted-jaime/df-dadosSQL.parquet")
 
 print(df_dadossql.show())
+
 # para a aplicação
 spark.stop()
