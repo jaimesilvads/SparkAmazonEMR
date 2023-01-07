@@ -43,4 +43,8 @@ O projeto consiste em criar um data lake no AWS S3 , fazer upload de dados proce
 
 7. Foi criado uma action nesse repositório para copiar o codigo da aplicação(Aws-EMR-spark.py) para o AWS S3(s3://landing-jaime/app/), apara o AWS EMR possa executa-la.Caso haja alteração na aplicação as proxima execuções do ERM já irão refletir as alterações.
 
+8. foi criado o arquivo de saida.
+<stdout>
+
+
 
