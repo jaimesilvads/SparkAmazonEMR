@@ -34,6 +34,7 @@ O projeto consiste em criar um data lake no AWS S3 , fazer upload de dados proce
 </ul> 
 
 3. Foi criado um cluster no AWS EMR
+<p align="center"><img src="./imagens/ClusterEMR.png" width="500"></p>
 
 4. Foram realizadas a limpeza, preprocessamento e conversão para o formato parquet, visando melhorar a performance nas proximas etapas do processo. O resultado(df-formatado.parquet) desse processo foi gravado na Proessing zone.
 
@@ -46,5 +47,6 @@ O projeto consiste em criar um data lake no AWS S3 , fazer upload de dados proce
 8. foi criado o arquivo de saida(stdout).
 <https://github.com/jaimesilvads/SparkAmazonEMR/blob/main/stdout>
 
+<p align="center"><img src="./imagens/SparkCompletado.png" width="500"></p>
 
 
