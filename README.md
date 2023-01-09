@@ -23,6 +23,7 @@ O projeto consiste em criar um data lake no AWS S3 , fazer upload de dados proce
   <li>Bancket(processing) - Processing zone(dados pre-processados)</li>
   <li>Bancket(cureted) - Cureted zone(Dados limpos, agregados e prontos para análises)</li>  
 </ul> 
+<p align="center"><img src="./imagens/backetsaws.png" width="500"></p>
 2.Foi realizado o upload dos arquivos de dados na zona de pouso(landing), extraídos do kaggle
 
 <ul>
