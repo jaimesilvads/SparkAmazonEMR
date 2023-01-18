@@ -40,7 +40,7 @@ O projeto consiste em criar um data lake no AWS S3 , fazer upload de dados proce
 
 5. Foi realiada a leitura dos dados em formato parquet e criada a view Dados_Sql para permitir exploração dos dados via SQL.
 
-6. Foi aplicada agragação nos dados da view Dados_Sql e gravado o resultado na Cureted zone em formato parquet.(df-Dados-Agregados.parquet)
+6. Foi aplicada agragação nos dados da view Dados_Sql e gravado o resultado na Cureted zone em formato parquet.(df-dadosSQL.parquet)
 
 7. Foi criado uma action nesse repositório para copiar o codigo da aplicação(Aws-EMR-spark.py) para o AWS S3(s3://landing-jaime/app/), apara o AWS EMR possa executa-la.Caso haja alteração na aplicação as proxima execuções do ERM já irão refletir as alterações.
 
