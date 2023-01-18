@@ -34,11 +34,11 @@ df.na.fill(value=0, subset=["quantity"]).show()
 print("\nEscrevendo os dados lidos da raw para parquet na processing zone...")
 df.write.format("parquet")\
         .mode("overwrite")\
-        .save("s3a://processing-jaime/df-parquet-file.parquet")
+        .save("s3a://processing-jaime/df-formatado.parquet")
 
 # lendo arquivos parquet
 df_parquet = spark.read.format("parquet")\
-    .load("s3a://processing-jaime/df-parquet-file.parquet")
+    .load("s3a://processing-jaime/df-formatado.parquet")
 
 # imprime os dados lidos em parquet
 print("\nImprime os dados lidos em parquet da processing zone")
